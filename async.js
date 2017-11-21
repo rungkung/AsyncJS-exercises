@@ -1,11 +1,16 @@
-const request = require('request');
+const fs = require('fs');
 
-const test = () => {
-  request('http://www.google.com',(error, response, body)=>{
-    console.log('Response');
-  });
-}
-//START OF PROGRAM
-console.log("Hitting google");
-test();
-console.log("Some other work");
+const readFromFile = (fileName,callback)=>{
+  // WRITE CODE HERE
+    //return fs.readFileSync(fileName,'utf8');
+    return fs.readFile(fileName,'utf8',(err, data) => {
+        if (err) callback(err);
+        callback(data);
+    });
+};
+
+readFromFile('sample.txt', (data) => {
+    console.log('START');
+    console.log(data);
+    console.log('END')
+});
